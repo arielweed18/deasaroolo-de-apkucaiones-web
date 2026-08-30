@@ -1,0 +1,19 @@
+@app.route("/")
+def inicio():
+    mensaje = "Bienvenido al Sistema de Gestión de Productos"
+    return render_template(
+        "index.html",
+        mensaje=mensaje
+    )
+
+
+@app.route("/productos")
+def mostrar_productos():
+    return render_template(
+        "productos.html",
+        productos=productos
+    )
+
+
+if __name__ == "__main__":
+    app.run(debug=True)

@@ -1,0 +1,163 @@
+// ==============================
+// ARREGLO DE PRODUCTOS
+// ==============================
+
+let productos = [
+    {
+        nombre: "Laptop",
+        categoria: "Electrónica",
+        precio: 850
+    },
+    {
+        nombre: "Mouse",
+        categoria: "Accesorios",
+        precio: 25
+    }
+];
+
+// ==============================
+// ELEMENTOS DEL HTML
+// ==============================
+
+const formulario = document.getElementById("formulario");
+const lista = document.getElementById("lista");
+const mensaje = document.getElementById("mensaje");
+
+// ==============================
+// MOSTRAR PRODUCTOS
+// ==============================
+
+function mostrarProductos() {
+
+    if (productos.length === 0) {
+
+        lista.innerHTML = `
+            <div class="alert alert-warning">
+                No existen productos registrados.
+            </div>
+        `;
+
+        return;
+    }
+
+    let html = "";
+
+    productos.forEach((producto) => {
+
+        html += `
+            <div class="col-md-6 mb-3">
+                <div class="producto-card">
+
+                    <h5>${producto.nombre}</h5>
+
+                    <p>
+                        <strong>Categoría:</strong>
+                        ${producto.categoria}
+                    </p>
+
+                    <p>
+                        <strong>Precio:</strong>
+                        $${producto.precio}
+                    </p>
+
+                </div>
+            </div>
+        `;
+
+    });
+
+    lista.innerHTML = html;
+
+}
+
+// ==============================
+// REGISTRAR PRODUCTO
+// ==============================
+
+formulario.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const nombre = document.getElementById("nombre").value.trim();
+
+    const categoria = document.getElementById("categoria").value;
+
+    const precio = document.getElementById("precio").value;
+
+    // VALIDACIONES
+
+    if(nombre === ""){
+
+        mensaje.innerHTML = `
+            <div class="alert alert-danger">
+                Ingrese el nombre del producto.
+            </div>
+        `;
+
+        return;
+
+    }
+
+    if(categoria === ""){
+
+        mensaje.innerHTML = `
+            <div class="alert alert-danger">
+                Seleccione una categoría.
+            </div>
+        `;
+
+        return;
+
+    }
+
+    if(precio === "" || Number(precio) <= 0){
+
+        mensaje.innerHTML = `
+            <div class="alert alert-danger">
+                Ingrese un precio válido.
+            </div>
+        `;
+
+        return;
+
+    }
+
+    // NUEVO PRODUCTO
+
+    const nuevoProducto = {
+
+        nombre: nombre,
+
+        categoria: categoria,
+
+        precio: Number(precio)
+
+    };
+
+    // AGREGAR AL ARREGLO
+
+    productos.push(nuevoProducto);
+
+    // MENSAJE
+
+    mensaje.innerHTML = `
+        <div class="alert alert-success">
+            Producto registrado correctamente.
+        </div>
+    `;
+
+    // LIMPIAR FORMULARIO
+
+    formulario.reset();
+
+    // ACTUALIZAR LISTA
+
+    mostrarProductos();
+
+});
+
+// ==============================
+// CARGA INICIAL
+// ==============================
+
+mostrarProductos();

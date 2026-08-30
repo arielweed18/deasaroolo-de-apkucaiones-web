@@ -1,0 +1,92 @@
+// Arreglo para guardar los usuarios
+let usuarios = [];
+
+// Elementos del formulario
+const formulario = document.getElementById("formulario");
+const nombre = document.getElementById("nombre");
+const correo = document.getElementById("correo");
+const edad = document.getElementById("edad");
+
+const tablaUsuarios = document.getElementById("tablaUsuarios");
+const mensaje = document.getElementById("mensaje");
+const spinner = document.getElementById("spinner");
+
+// Evento del formulario
+formulario.addEventListener("submit", function (e) {
+
+    e.preventDefault();
+
+    // Validaciones
+    if (
+        nombre.value.trim() === "" ||
+        correo.value.trim() === "" ||
+        edad.value.trim() === ""
+    ) {
+        alert("Complete todos los campos.");
+        return;
+    }
+
+    if (edad.value <= 0) {
+        alert("Ingrese una edad válida.");
+        return;
+    }
+
+    // Mostrar spinner
+    spinner.classList.remove("d-none");
+
+    setTimeout(function () {
+
+        // Ocultar spinner
+        spinner.classList.add("d-none");
+
+        // Crear objeto usuario
+        const usuario = {
+            nombre: nombre.value,
+            correo: correo.value,
+            edad: edad.value
+        };
+
+        // Guardar en el arreglo
+        usuarios.push(usuario);
+
+        // Actualizar tabla
+        mostrarUsuarios();
+
+        // Mostrar alerta Bootstrap
+        mensaje.classList.remove("d-none");
+
+        setTimeout(function () {
+            mensaje.classList.add("d-none");
+        }, 3000);
+
+        // Limpiar formulario
+        formulario.reset();
+
+    }, 1500);
+
+});
+
+// Mostrar usuarios en la tabla
+function mostrarUsuarios() {
+
+    tablaUsuarios.innerHTML = "";
+
+    usuarios.forEach(function (usuario) {
+
+        tablaUsuarios.innerHTML += `
+
+        <tr>
+
+            <td>${usuario.nombre}</td>
+
+            <td>${usuario.correo}</td>
+
+            <td>${usuario.edad}</td>
+
+        </tr>
+
+        `;
+
+    });
+
+}

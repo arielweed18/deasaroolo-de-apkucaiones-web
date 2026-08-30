@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Productos{% endblock %}
+
+{% block content %}
+
+<h1>Lista de Productos</h1>
+
+<div class="productos">
+
+    {% for producto in productos %}
+
+    <div class="producto">
+
+        <h2>{{ producto.nombre|upper }}</h2>
+
+        <p>Precio: ${{ producto.precio }}</p>
+
+        {% if producto.stock > 0 %}
+
+            <p class="disponible">
+                Disponible - Stock: {{ producto.stock }}
+            </p>
+
+        {% else %}
+
+            <p class="agotado">
+                Agotado
+            </p>
+
+        {% endif %}
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}
+<nav class="navbar">
+    <div class="navbar-container">
+
+        <a href="{{ url_for('inicio') }}" class="logo">
+            Sistema de Productos
+        </a>
+
+        <div class="nav-links">
+            <a href="{{ url_for('inicio') }}">Inicio</a>
+            <a href="{{ url_for('mostrar_productos') }}">Productos</a>
+        </div>
+
+    </div>
+</nav>

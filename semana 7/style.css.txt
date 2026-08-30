@@ -1,0 +1,109 @@
+/* ==========================
+   ESTILOS GENERALES
+========================== */
+
+body{
+    background:#f4f6f9;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+/* Header */
+
+header{
+    box-shadow:0 2px 8px rgba(0,0,0,.2);
+}
+
+/* Navbar */
+
+.navbar{
+    margin-bottom:20px;
+}
+
+/* Tarjetas */
+
+.card{
+    border:none;
+    border-radius:12px;
+    margin-bottom:20px;
+}
+
+.card-header{
+    font-weight:bold;
+}
+
+/* Productos */
+
+.producto{
+    transition:.3s;
+}
+
+.producto:hover{
+    transform:scale(1.03);
+}
+
+/* Botón */
+
+button{
+    font-weight:bold;
+}
+
+/* Mensajes */
+
+#mensaje{
+    font-weight:bold;
+}
+
+/* Footer */
+
+footer{
+    margin-top:40px;
+}
+
+/* Tarjetas generadas */
+
+.producto-card{
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:15px;
+    margin-bottom:15px;
+    background:white;
+    box-shadow:0 2px 6px rgba(0,0,0,.1);
+}
+
+.producto-card h5{
+    color:#0d6efd;
+}
+
+.producto-card p{
+    margin:5px 0;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+    header h1{
+        font-size:28px;
+    }
+
+    .card{
+        margin-bottom:25px;
+    }
+
+}
+
+@media(max-width:576px){
+
+    header h1{
+        font-size:22px;
+    }
+
+    header p{
+        font-size:14px;
+    }
+
+    footer{
+        font-size:14px;
+    }
+
+}
