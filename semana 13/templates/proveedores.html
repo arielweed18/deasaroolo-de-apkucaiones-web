@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Proveedores{% endblock %}
+
+{% block content %}
+
+<h1>Lista de Proveedores</h1>
+
+<a href="{{ url_for('nuevo_proveedor') }}" class="btn">
+    Registrar nuevo proveedor
+</a>
+
+<table class="tabla-productos">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+            <th>Empresa</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for proveedor in proveedores %}
+        <tr>
+            <td>{{ proveedor[1] }}</td>
+            <td>{{ proveedor[2] }}</td>
+            <td>{{ proveedor[3] }}</td>
+            <td>{{ proveedor[4] }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="4">No hay proveedores registrados.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
