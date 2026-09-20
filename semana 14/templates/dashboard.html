@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Panel principal{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+
+    <h1>Panel de administración</h1>
+
+    <p>
+        Bienvenido,
+        <strong>{{ current_user.usuario }}</strong>.
+    </p>
+
+    <p>
+        Has iniciado sesión correctamente. Desde este panel puedes
+        acceder a los módulos de administración de la ferretería.
+    </p>
+
+    <div class="mt-4">
+        <a href="{{ url_for('mostrar_productos') }}" class="btn btn-primary">
+            Productos
+        </a>
+
+        <a href="{{ url_for('mostrar_clientes') }}" class="btn btn-primary">
+            Clientes
+        </a>
+
+        <a href="{{ url_for('mostrar_proveedores') }}" class="btn btn-primary">
+            Proveedores
+        </a>
+
+        <a href="{{ url_for('mostrar_facturacion') }}" class="btn btn-primary">
+            Facturación
+        </a>
+
+        <a href="{{ url_for('logout') }}" class="btn btn-danger">
+            Cerrar sesión
+        </a>
+    </div>
+
+</div>
+{% endblock %}
