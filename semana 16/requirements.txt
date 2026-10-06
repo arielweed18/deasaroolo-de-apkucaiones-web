@@ -1,0 +1,9 @@
+Flask
+Flask-WTF
+WTForms
+email-validator
+Flask-Login
+Werkzeug
+python-dotenv
+psycopg2-binary
+gunicorn

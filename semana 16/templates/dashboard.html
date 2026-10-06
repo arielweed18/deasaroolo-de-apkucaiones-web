@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="text-center mb-5">
+        <h1>Panel de Administración</h1>
+
+        <p class="lead">
+            Bienvenido, {{ current_user.usuario }}
+        </p>
+
+        <p>
+            Sistema de gestión de la Ferretería Web
+        </p>
+    </div>
+
+
+    <div class="row g-4">
+
+        <!-- PROVEEDORES -->
+        <div class="col-md-4">
+            <div class="card shadow h-100">
+                <div class="card-body text-center">
+
+                    <h3>Proveedores</h3>
+
+                    <p>
+                        Registrar, consultar, modificar y eliminar proveedores.
+                    </p>
+
+                    <a href="{{ url_for('mostrar_proveedores') }}"
+                       class="btn btn-primary">
+                        Ver proveedores
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- PRODUCTOS -->
+        <div class="col-md-4">
+            <div class="card shadow h-100">
+                <div class="card-body text-center">
+
+                    <h3>Productos</h3>
+
+                    <p>
+                        Administrar los productos y relacionarlos con proveedores.
+                    </p>
+
+                    <a href="{{ url_for('mostrar_productos') }}"
+                       class="btn btn-success">
+                        Ver productos
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- VENTAS -->
+        <div class="col-md-4">
+            <div class="card shadow h-100">
+                <div class="card-body text-center">
+
+                    <h3>Ventas</h3>
+
+                    <p>
+                        Registrar y administrar las ventas realizadas.
+                    </p>
+
+                    <a href="{{ url_for('mostrar_ventas') }}"
+                       class="btn btn-warning">
+                        Ver ventas
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="text-center mt-5">
+
+        <a href="{{ url_for('logout') }}"
+           class="btn btn-danger">
+            Cerrar sesión
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

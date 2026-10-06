@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Productos</h2>
+
+        <a href="{{ url_for('nuevo_producto') }}"
+           class="btn btn-primary">
+            Agregar producto
+        </a>
+    </div>
+
+    <table class="table table-bordered table-striped">
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Proveedor</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        {% for producto in productos %}
+
+            <tr>
+                <td>{{ producto[0] }}</td>
+                <td>{{ producto[1] }}</td>
+                <td>$ {{ producto[2] }}</td>
+                <td>{{ producto[3] }}</td>
+
+                <!-- Este dato viene del JOIN -->
+                <td>{{ producto[4] }}</td>
+
+                <td>
+
+                    <a href="{{ url_for('editar_producto',
+                            id_producto=producto[0]) }}"
+                       class="btn btn-warning btn-sm">
+                        Editar
+                    </a>
+
+                    <form
+                        action="{{ url_for('eliminar_producto',
+                        id_producto=producto[0]) }}"
+                        method="POST"
+                        style="display:inline;">
+
+                        <button type="submit"
+                                class="btn btn-danger btn-sm"
+                                onclick="return confirm('¿Eliminar este producto?')">
+                            Eliminar
+                        </button>
+
+                    </form>
+
+                </td>
+            </tr>
+
+        {% else %}
+
+            <tr>
+                <td colspan="6" class="text-center">
+                    No hay productos registrados.
+                </td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    <a href="{{ url_for('dashboard') }}"
+       class="btn btn-secondary">
+        Volver al panel
+    </a>
+
+</div>
+
+{% endblock %}

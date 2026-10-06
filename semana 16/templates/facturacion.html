@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Facturación{% endblock %}
+
+{% block content %}
+
+<h1>Facturación</h1>
+
+<a href="{{ url_for('nueva_factura') }}" class="btn">
+    Registrar nueva factura
+</a>
+
+<table class="tabla-productos">
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for factura in facturas %}
+        <tr>
+            <td>{{ factura[1] }}</td>
+            <td>{{ factura[2] }}</td>
+            <td>{{ factura[3] }}</td>
+            <td>${{ factura[4] }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="4">No hay facturas registradas.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
