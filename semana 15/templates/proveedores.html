@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Proveedores</h2>
+
+        <a href="{{ url_for('nuevo_proveedor') }}"
+           class="btn btn-primary">
+            Agregar proveedor
+        </a>
+    </div>
+
+    <table class="table table-bordered table-striped">
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        {% for proveedor in proveedores %}
+
+        <tr>
+            <td>{{ proveedor[0] }}</td>
+            <td>{{ proveedor[1] }}</td>
+            <td>{{ proveedor[2] }}</td>
+            <td>{{ proveedor[3] }}</td>
+
+            <td>
+                <a href="{{ url_for('editar_proveedor',
+                        id_proveedor=proveedor[0]) }}"
+                   class="btn btn-warning btn-sm">
+                    Editar
+                </a>
+
+                <form action="{{ url_for('eliminar_proveedor',
+                              id_proveedor=proveedor[0]) }}"
+                      method="POST"
+                      style="display:inline;">
+
+                    <button type="submit"
+                            class="btn btn-danger btn-sm"
+                            onclick="return confirm('¿Eliminar este proveedor?')">
+                        Eliminar
+                    </button>
+
+                </form>
+            </td>
+        </tr>
+
+        {% else %}
+
+        <tr>
+            <td colspan="5" class="text-center">
+                No hay proveedores registrados.
+            </td>
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    <a href="{{ url_for('dashboard') }}"
+       class="btn btn-secondary">
+        Volver al panel
+    </a>
+
+</div>
+
+{% endblock %}

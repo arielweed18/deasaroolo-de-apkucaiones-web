@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    {% if editando %}
+        <h2>Modificar producto</h2>
+    {% else %}
+        <h2>Agregar producto</h2>
+    {% endif %}
+
+    <form method="POST">
+
+        {{ form.hidden_tag() }}
+
+        <div class="mb-3">
+            {{ form.nombre.label(class="form-label") }}
+            {{ form.nombre(class="form-control") }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.precio.label(class="form-label") }}
+            {{ form.precio(class="form-control") }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.stock.label(class="form-label") }}
+            {{ form.stock(class="form-control") }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.id_proveedor.label(class="form-label") }}
+            {{ form.id_proveedor(class="form-select") }}
+        </div>
+
+        {{ form.submit(class="btn btn-success") }}
+
+        <a href="{{ url_for('mostrar_productos') }}"
+           class="btn btn-secondary">
+            Cancelar
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}
